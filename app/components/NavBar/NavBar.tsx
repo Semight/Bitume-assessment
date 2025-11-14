@@ -15,21 +15,20 @@ import { useCategoryStore } from "@/app/store/categoryStore";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const activeCategory = useCategoryStore((s) => s.activeCategory);
-const setActiveCategory = useCategoryStore((s) => s.setActiveCategory);
+  const setActiveCategory = useCategoryStore((s) => s.setActiveCategory);
 
   const navItems = [
-  "Top Stories",
-  "World",
-  "Politics",
-  "Business",
-  "Tech",
-  "Culture",
-];
+    "Top Stories",
+    "World",
+    "Politics",
+    "Business",
+    "Tech",
+    "Culture",
+  ];
 
   return (
     <nav className="sticky top-0 z-50 bg-gray-100 shadow-sm border-b border-gray-200">
       <div className="container mx-auto flex items-center justify-between px-6 py-3">
-        
         {/* Logo */}
         <div className="flex items-center gap-2">
           <FiBookOpen className="w-7 h-7 text-blue-600" />
@@ -42,25 +41,29 @@ const setActiveCategory = useCategoryStore((s) => s.setActiveCategory);
           className="md:hidden text-gray-700"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <FiX className="w-7 h-7" /> : <FiMenu className="w-7 h-7" />}
+          {menuOpen ? (
+            <FiX className="w-7 h-7" />
+          ) : (
+            <FiMenu className="w-7 h-7" />
+          )}
         </button>
 
         <ul className="hidden md:flex items-center gap-6">
-  {navItems.map((cat) => (
-    <li key={cat}>
-      <button
-        onClick={() => setActiveCategory(cat)}
-        className={`transition ${
-          activeCategory === cat
-            ? "text-blue-600 font-semibold"
-            : "text-gray-700 hover:text-blue-500"
-        }`}
-      >
-        {cat}
-      </button>
-    </li>
-  ))}
-</ul>
+          {navItems.map((cat) => (
+            <li key={cat}>
+              <button
+                onClick={() => setActiveCategory(cat)}
+                className={`transition ${
+                  activeCategory === cat
+                    ? "text-blue-600 font-semibold"
+                    : "text-gray-700 hover:text-blue-500"
+                }`}
+              >
+                {cat}
+              </button>
+            </li>
+          ))}
+        </ul>
 
         <div className="hidden md:flex items-center gap-4">
           <div className="relative">
@@ -79,7 +82,6 @@ const setActiveCategory = useCategoryStore((s) => s.setActiveCategory);
 
       {menuOpen && (
         <div className="md:hidden bg-gray-50 border-t border-gray-200 px-6 py-4 space-y-4">
-          
           <div className="relative">
             <FiSearch className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
             <input
@@ -93,15 +95,15 @@ const setActiveCategory = useCategoryStore((s) => s.setActiveCategory);
             {navItems.map((cat) => (
               <li key={cat}>
                 <button
-        onClick={() => setActiveCategory(cat)}
-        className={`transition ${
-          activeCategory === cat
-            ? "text-blue-600 font-semibold"
-            : "text-gray-700 hover:text-blue-500"
-        }`}
-      >
-        {cat}
-      </button>
+                  onClick={() => setActiveCategory(cat)}
+                  className={`transition ${
+                    activeCategory === cat
+                      ? "text-blue-600 font-semibold"
+                      : "text-gray-700 hover:text-blue-500"
+                  }`}
+                >
+                  {cat}
+                </button>
               </li>
             ))}
           </ul>
