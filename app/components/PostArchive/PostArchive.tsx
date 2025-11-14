@@ -5,9 +5,11 @@ import { FiSearch } from "react-icons/fi";
 import Image from "next/image";
 import BreakingNews from "@/public/images/breaking-news.jpeg";
 import { Article, fetchNews } from "@/app/lib/fetchNews";
+import { useCategoryStore } from "@/app/store/categoryStore";
 
 export default function PostArchive() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const activeCategory = useCategoryStore((s) => s.activeCategory);
+const setActiveCategory = useCategoryStore((s) => s.setActiveCategory);
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -118,29 +120,29 @@ export default function PostArchive() {
         </div> */}
 
         {articles.length > 0 && (
-          <div className="relative w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-md mb-20">
+          <div className="relative w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-md mb-12">
             <Image
               src={articles[0]?.image || BreakingNews}
               alt={articles[0]?.title || "Breaking News"}
               width={1200}
               height={600}
-              className="w-full h-[400px] object-cover"
+              className="w-full h-[280px] sm:h-[350px] md:h-[400px] object-cover"
             />
 
-            <div className="absolute inset-0 bg-black/50 flex flex-col justify-end p-10 text-white">
+            <div className="absolute inset-0 bg-black/50 flex flex-col justify-end p-4 sm:p-6 md:p-10 text-white">
               <div>
-                <h2 className="text-4xl max-w-xl font-bold mb-3">
+                <h2 className="text-xl sm:text-2xl md:text-4xl max-w-xl font-bold mb-3">
                   {articles[0]?.title}
                 </h2>
 
-                <p className="max-w-xl mb-5 text-gray-200">
+                <p className="max-w-full md:max-w-xl text-sm sm:text-base md:text-lg mb-4 text-gray-200 line-clamp-3 md:line-clamp-none">
                   {articles[0]?.description}
                 </p>
 
                 <a
                   href={articles[0]?.url ?? undefined}
                   target="_blank"
-                  className="bg-blue-600 cursor-pointer hover:bg-blue-700 transition px-6 py-2 rounded-full text-white font-medium"
+                  className="bg-blue-600 cursor-pointer hover:bg-blue-700 transition px-4 py-2 sm:px-5 sm:py-2 text-sm sm:text-base rounded-full text-white font-medium inline-block"
                 >
                   Read more
                 </a>
