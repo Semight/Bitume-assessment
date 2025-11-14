@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📰 Bitume News App
 
-## Getting Started
+A **Next.js + TailwindCSS** project that fetches news articles using the **GNews API** and displays them in a clean, responsive layout. Features include a breaking news section, recent articles, search functionality, and category filters.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+- Featured **Breaking News** section with image overlay
+- **Recent Articles** section
+- Search for news topics in real-time
+- Filter news by categories: Top Stories, World, Politics, Business, Tech
+- Fully responsive design for mobile, tablet, and desktop
+- Clean and modern UI with TailwindCSS
+
+---
+
+## 🛠 Tech Stack
+
+- **Next.js 16** (App Router)
+- **TypeScript**
+- **TailwindCSS**
+- **GNews API** for news data
+
+---
+
+## ⚡ Getting Started
+
+1. **Clone the repository**
 
 ```bash
+git clone https://github.com/Semight/Bitume-assessment.git
+cd bitume-assessment
+Install dependencies
+
+bash
+npm install
+# or
+yarn install
+Create a .env.local file in the root directory:
+
+env
+NEXT_PUBLIC_GNEWS_API_KEY=your_api_key_here
+Replace your_api_key_here with your actual GNews API key.
+
+Run the development server
+
+bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open http://localhost:3000 in your browser to view the app.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🌐 Deployment
+This project can be deployed easily on Vercel:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Go to Vercel and import your GitHub repository.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Set your environment variable NEXT_PUBLIC_GNEWS_API_KEY in the Vercel dashboard.
 
-## Learn More
+Deploy the app and share the live URL.
 
-To learn more about Next.js, take a look at the following resources:
+📂 Folder Structure
+php
+.
+├── app/             # Next.js App Router pages
+├── public/          # Static assets like images
+├── styles/          # Global CSS (Tailwind + custom)
+├── lib/             # API functions (e.g., fetchNews)
+├── components/      # Reusable React components
+├── .env.local       # API keys and environment variables
+└── package.json
+📌 Notes
+The breaking news section always displays the latest article fetched from the API.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The recent articles section shows all remaining articles, starting from index 1.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Remote images from the API are handled using Next.js next/image with configured remote hosts in next.config.js.
