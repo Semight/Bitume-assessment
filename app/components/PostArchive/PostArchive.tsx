@@ -6,6 +6,7 @@ import Image from "next/image";
 import BreakingNews from "@/public/images/breaking-news.jpeg";
 import { Article, fetchNews } from "@/app/lib/fetchNews";
 import { useCategoryStore } from "@/app/store/categoryStore";
+import Footer from "../Footer/Footer";
 
 export default function PostArchive() {
   const activeCategory = useCategoryStore((s) => s.activeCategory);
@@ -61,7 +62,8 @@ const setActiveCategory = useCategoryStore((s) => s.setActiveCategory);
   }, [searchTerm]);
 
   return (
-    <section className="bg-gray-100 min-h-screen py-10">
+    <>
+    <section className="bg-gray-100 min-h-screen py-20">
       <div className="px-6 md:px-20 lg:px-40 xl:px-56">
         <div className="w-full mx-auto mb-8">
           <div className="relative">
@@ -91,33 +93,6 @@ const setActiveCategory = useCategoryStore((s) => s.setActiveCategory);
             </button>
           ))}
         </div>
-
-        {/* 📰 Breaking News Section */}
-        {/* <div className="relative w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-md mb-20">
-          <Image
-            src={BreakingNews}
-            alt="Breaking News"
-            width={1200}
-            height={600}
-            className="w-full h-[400px] object-cover"
-          />
-
-          <div className="absolute inset-0 bg-black/50 flex flex-col justify-end p-10 text-white">
-            <div>
-              <h2 className="text-4xl max-w-xl font-bold mb-3">
-                Breaking: Major Political Event Unfolds
-              </h2>
-              <p className="max-w-xl mb-5 text-gray-200">
-                A significant political event has just occurred, impacting global relations
-                and sparking widespread discussion. Our team provides in-depth analysis and live
-                updates as the situation develops.
-              </p>
-              <button className="bg-blue-600 cursor-pointer hover:bg-blue-700 transition px-6 py-2 rounded-full text-white font-medium">
-                Read more
-              </button>
-            </div>
-          </div>
-        </div> */}
 
         {articles.length > 0 && (
           <div className="relative w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-md mb-12">
@@ -204,5 +179,8 @@ const setActiveCategory = useCategoryStore((s) => s.setActiveCategory);
         </div>
       </div>
     </section>
+
+    <Footer />
+    </>
   );
 }
